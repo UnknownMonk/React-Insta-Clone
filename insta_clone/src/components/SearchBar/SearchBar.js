@@ -1,66 +1,65 @@
 import React from 'react';
 import Logo from '../../img/image.png';
+import styled from 'styled-components';
 
-const SearchBar = ({ searchHandler, searchPost }) => {
+const SearchBar = ({ clear, searchHandler, searchPost }) => {
   return (
-    <div style={searchBar_container}>
+    <SearchBarContainer>
       <div>
-        <img
-          style={image}
+        <Img
           alt="instagram logo"
           src={Logo}
           className="logo-image"
+          onClick={clear}
         />
       </div>
       <div>
         <form onSubmit={searchPost}>
-          <input
-            onKeyDown={searchHandler}
-            style={ico}
-            type="text"
-            placeholder="Search"
-          />
+          <Input onKeyDown={searchHandler} type="text" placeholder="🔍Search" />
         </form>
       </div>
-      <div style={social_wrapper}>
-        <div style={social}>
+      <SocialWrapper>
+        <Social>
           <i className="far fa-compass" />
-        </div>
-        <div style={social}>
+        </Social>
+        <Social>
           <i className="far fa-heart" />
-        </div>
-        <div style={social}>
+        </Social>
+        <Social>
           <i className="far fa-user" />
-        </div>
-      </div>
-    </div>
+        </Social>
+      </SocialWrapper>
+    </SearchBarContainer>
   );
 };
 
-const ico = {
-  fontSize: '18px',
-  padding: '0 10px',
-  borderRadius: '3px',
-  borderStyle: 'none',
-  border: '1px lightGray solid'
-};
-const image = {
-  width: '200px'
-};
+const Input = styled.input`
+  font-size: 18px;
+  padding: 0 10px;
+  border-radius: 3px;
+  border-style: none;
+  border: 1px lightGray solid;
+`;
 
-const social = {
-  marginRight: '20px'
-};
-const searchBar_container = {
-  display: 'flex',
-  justifyContent: 'space-evenly',
-  alignItems: 'center',
-  padding: '20px 0',
-  border: '2px solid lightGray'
-};
-const social_wrapper = {
-  display: 'flex',
-  fontSize: '25px'
-};
+const Img = styled.img`
+  width: 200px;
+`;
+
+const Social = styled.div`
+  margin-right: 20px;
+`;
+
+const SearchBarContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 0;
+  border: 2px solid lightgray;
+`;
+
+const SocialWrapper = styled.div`
+  display: flex;
+  font-size: 25px;
+`;
 
 export default SearchBar;

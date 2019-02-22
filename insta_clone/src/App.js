@@ -1,47 +1,22 @@
 import React, { Component } from 'react';
-import dummyData from './dummy-data';
-import './App.css';
+import Login from './components/Login/Login';
+import styled from 'styled-components';
 
-import PostContainer from './components/PostContainer/PostContainer';
-import SearchBar from './components/SearchBar/SearchBar';
-
+import withAuthenticate from './components/Authentication/withAuthenticate';
+import PostsPage from './components/Postpage/PostsPage';
+const ComponentFromWithAuthenticate = withAuthenticate(PostsPage, Login);
 class App extends Component {
-  static defaultProps = {
-    post: []
-  };
-
-  state = {
-    post: dummyData,
-    foundPost: [],
-    searchPost: ''
-  };
-
-  componentDidMount() {
-    this.setState({
-      post: dummyData
-    });
-  }
-
-  searchHandler = e => {
-    console.log(this.state.searchPost);
-
-    this.setState({
-      searchPost: e.target.value
-    });
-  };
-
   render() {
     return (
-      <div className="App">
-        <SearchBar
-          searchPost={this.searchPost}
-          searchHandler={this.searchHandler}
-        />
-
-        <PostContainer posts={this.state.post} />
-      </div>
+      <AppContainer>
+        <ComponentFromWithAuthenticate />
+      </AppContainer>
     );
   }
 }
+
+const AppContainer = styled.div`
+  width: 100%;
+`;
 
 export default App;
